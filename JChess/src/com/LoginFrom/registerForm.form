@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.LoginFrom.registerForm">
+  <grid id="cbd77" binding="registerPanel" layout-manager="GridLayoutManager" row-count="12" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="3">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="48" y="54" width="910" height="1054"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+      <background color="-16777216"/>
+      <doubleBuffered value="true"/>
+      <focusCycleRoot value="true"/>
+      <focusTraversalPolicyProvider value="true"/>
+      <focusable value="true"/>
+      <foreground color="-1576705"/>
+      <inheritsPopupMenu value="true"/>
+      <maximumSize width="910" height="600"/>
+      <minimumSize width="910" height="600"/>
+      <preferredSize width="910" height="600"/>
+      <requestFocusEnabled value="true"/>
+      <verifyInputWhenFocusTarget value="true"/>
+    </properties>
+    <border type="none" title-justification="4">
+      <color color="-13482776"/>
+    </border>
+    <children>
+      <component id="45ca9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="Images/add-user.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="3e186" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="48" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Registeration"/>
+        </properties>
+      </component>
+      <component id="251c6" class="javax.swing.JLabel" binding="dateOfBirth">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Date Of Birth:"/>
+        </properties>
+      </component>
+      <component id="4add4" class="javax.swing.JLabel" binding="userName">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="UserName:"/>
+        </properties>
+      </component>
+      <component id="130d8" class="javax.swing.JLabel" binding="gender">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Gender:"/>
+        </properties>
+      </component>
+      <component id="80" class="javax.swing.JLabel" binding="countryLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="30"/>
+            <maximum-size width="-1" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Country:"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <component id="c7be8" class="javax.swing.JLabel" binding="chessLevel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Chess Level:"/>
+        </properties>
+      </component>
+      <component id="5fab0" class="javax.swing.JLabel" binding="elo">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Chess Elo :"/>
+        </properties>
+      </component>
+      <component id="624a2" class="javax.swing.JLabel" binding="password">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Password:"/>
+        </properties>
+      </component>
+      <component id="51b6f" class="javax.swing.JLabel" binding="cPassword">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="ConfirmPassword:"/>
+        </properties>
+      </component>
+      <component id="880c2" class="javax.swing.JTextField" binding="nameField">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <component id="2fcad" class="javax.swing.JTextField" binding="userNameField">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <component id="6e2b2" class="javax.swing.JPasswordField" binding="passwordField">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <component id="49a97" class="javax.swing.JPasswordField" binding="cPasswordField">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <component id="7175" class="javax.swing.JComboBox" binding="monthComboBox" custom-create="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-16777216"/>
+          <doubleBuffered value="true"/>
+          <editable value="false"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <inheritsPopupMenu value="true"/>
+          <model>
+            <item value="January"/>
+            <item value="February"/>
+            <item value="March"/>
+            <item value="April"/>
+            <item value="May"/>
+            <item value="June"/>
+            <item value="July"/>
+            <item value="August"/>
+            <item value="September"/>
+            <item value="October"/>
+            <item value="November"/>
+            <item value="December"/>
+          </model>
+          <popupVisible value="false"/>
+          <requestFocusEnabled value="true"/>
+        </properties>
+      </component>
+      <component id="db542" class="javax.swing.JSlider" binding="eloSlider">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="700" height="-1"/>
+            <preferred-size width="700" height="-1"/>
+            <maximum-size width="700" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <inverted value="false"/>
+          <majorTickSpacing value="300"/>
+          <maximum value="3000"/>
+          <minimum value="300"/>
+          <minorTickSpacing value="100"/>
+          <paintLabels value="true"/>
+          <paintTicks value="true"/>
+          <paintTrack value="true"/>
+          <requestFocusEnabled value="true"/>
+          <snapToTicks value="false"/>
+          <valueIsAdjusting value="true"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <component id="5f59e" class="javax.swing.JButton" binding="registerButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="-1"/>
+            <maximum-size width="250" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Register"/>
+        </properties>
+      </component>
+      <component id="89e87" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <component id="be76d" class="javax.swing.JLabel" binding="fullName">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Name:"/>
+        </properties>
+      </component>
+      <component id="7f625" class="javax.swing.JRadioButton" binding="maleRadioButton">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <selected value="true"/>
+          <text value="Male"/>
+        </properties>
+      </component>
+      <component id="85239" class="javax.swing.JCheckBox" binding="beginnerCB">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Beginner"/>
+        </properties>
+      </component>
+      <component id="41c95" class="javax.swing.JCheckBox" binding="gmCB">
+        <constraints>
+          <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Grand-Master"/>
+        </properties>
+      </component>
+      <component id="66968" class="javax.swing.JCheckBox" binding="masterCB">
+        <constraints>
+          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Master"/>
+        </properties>
+      </component>
+      <component id="fea2b" class="javax.swing.JComboBox" binding="yearComboBox" custom-create="true">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <component id="e3a1b" class="javax.swing.JComboBox" binding="dateComboBox" custom-create="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <maximum-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+        </properties>
+      </component>
+      <scrollpane id="fe2f7">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="7" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="40"/>
+            <maximum-size width="-1" height="40"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="965ec" class="javax.swing.JList" binding="countryComboBox">
+            <constraints/>
+            <properties>
+              <autoscrolls value="true"/>
+              <background color="-16777216"/>
+              <enabled value="true"/>
+              <fixedCellHeight value="25"/>
+              <fixedCellWidth value="-1"/>
+              <font name="JetBrains Mono" size="18" style="3"/>
+              <foreground color="-1707521"/>
+              <inheritsPopupMenu value="true"/>
+              <maximumSize width="150" height="40"/>
+              <minimumSize width="150" height="40"/>
+              <model>
+                <item value="Pakistan"/>
+                <item value="Saudi Arabia"/>
+                <item value="Bangladesh"/>
+                <item value="America"/>
+                <item value="Iran"/>
+                <item value="Iraq"/>
+                <item value="Turkey"/>
+                <item value="Afghanistan"/>
+                <item value="China"/>
+                <item value="Qatar"/>
+                <item value="Egypt"/>
+                <item value="India"/>
+                <item value="Brazil"/>
+                <item value="Canada"/>
+                <item value="France"/>
+                <item value="Germany"/>
+                <item value="Italy"/>
+                <item value="Japan"/>
+                <item value="Mexico"/>
+                <item value="Russia"/>
+                <item value="South Korea"/>
+                <item value="Spain"/>
+                <item value="United Kingdom"/>
+                <item value="Australia"/>
+                <item value="Argentina"/>
+                <item value="Colombia"/>
+                <item value="South Africa"/>
+                <item value="Nigeria"/>
+                <item value="Kenya"/>
+                <item value="Ghana"/>
+                <item value="Morocco"/>
+                <item value="Peru"/>
+                <item value="Chile"/>
+                <item value="Singapore"/>
+                <item value="Malaysia"/>
+                <item value="Thailand"/>
+                <item value="Indonesia"/>
+                <item value="Philippines"/>
+                <item value="Vietnam"/>
+                <item value="New Zealand"/>
+                <item value="Netherlands"/>
+                <item value="Belgium"/>
+                <item value="Switzerland"/>
+                <item value="Sweden"/>
+                <item value="Norway"/>
+                <item value="Denmark"/>
+                <item value="Finland"/>
+                <item value="Portugal"/>
+                <item value="Ireland"/>
+              </model>
+              <preferredSize width="150" height="150"/>
+              <visibleRowCount value="2"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="7cda9" class="javax.swing.JCheckBox" binding="intermediateCheckBox" default-binding="true">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708033"/>
+          <text value="Intermediate"/>
+        </properties>
+      </component>
+      <component id="353f1" class="javax.swing.JRadioButton" binding="femaleRadioButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1708289"/>
+          <text value="Female"/>
+        </properties>
+      </component>
+      <component id="77df9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1"/>
+          <text value="Email :"/>
+        </properties>
+      </component>
+      <component id="7f2ae" class="javax.swing.JTextField" binding="emailField">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <font name="JetBrains Mono" size="18" style="1"/>
+          <foreground color="-1"/>
+        </properties>
+      </component>
+      <component id="bafd7" class="javax.swing.JLabel" binding="backToLogin">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="Images/back_arrow.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
