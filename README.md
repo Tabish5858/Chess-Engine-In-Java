@@ -1,93 +1,152 @@
 # Chess Engine in Java
 
-A compact, educational chess engine and GUI implemented in Java. This repository contains the source code, assets, and build instructions for a playable desktop chess application that demonstrates core engine concepts (move generation, board representation, basic evaluation) together with a graphical interface.
+Professional, well-documented Java chess engine and Swing GUI used as an educational reference and a small playable desktop application. The project demonstrates move generation, board representation, a simple evaluation routine, and a Swing-based GUI with login and optional persistence to a MySQL database.
 
-Key improvements made to this README:
-- Clear project overview and goals
-- Step-by-step setup and run instructions
-- Dependency and configuration guidance (including Guava and SQL libs)
-- Notes about image / GIF piece paths and how to update them in Table.java
-- Contribution guidelines and license information
+What this repository contains
+- JChess (main desktop application): Swing GUI, game loop, drag-and-drop board implemented under JChess/src/com/chess/gui (Table.java and supporting panels).
+- Chess engine core: board model, pieces, move generation and move validation located under JChess/src/com/chess/engine.
+- Login & registration UI: simple login/register forms that integrate with an optional local MySQL database (LoginFrom package).
+- Assets: piece images and GIFs currently loaded from a local path (art/pieces/simple by default) and an application icon referenced by Table.java.
+- Utility code: small helpers and use of Google Guava for collection utilities and convenience.
 
-Table of Contents
-- Features
-- Requirements
-- Quick Start (Build & Run)
-- Project Structure
-- Configuration Notes
-- How to Play / Usage
-- Development & Contribution
-- License
-- Contact
+Technologies and libraries used
+- Java 11+ (recommended)
+- Swing (javax.swing) for GUI
+- Google Guava (com.google.guava:guava) for collection utilities
+- JDBC / MySQL Connector (mysql:mysql-connector-java) for optional persistence
+- (Optional) Maven or Gradle if you prefer using a build tool
 
-Features
-- Fully playable chess GUI with drag-and-drop and move highlighting
-- Move generation and basic engine evaluation (educational focus)
-- Simple persistence hooks (SQL) for saving game state or preferences
-- Uses Guava utilities for convenience and performance where applicable
+Quick checklist (prerequisites)
+- Install JDK 11 or newer
+- Install Maven or Gradle if you want automated builds (optional)
+- Install MySQL (optional) if you want to enable login/elo persistence
+- Download Guava and your JDBC driver or add them via your build tool
 
-Requirements
-- Java Development Kit (JDK) 11 or later
-- Maven or Gradle (if you prefer to build via a build tool)
-- Guava library (add to your classpath or build file)
-- JDBC driver / SQL library if you plan to use the persistence features
+Database setup (optional but recommended for login / ELO / stats)
+The application expects a MySQL database named chess and a table for player data. Create a database and a player table like this (example SQL):
 
-Quick Start (Build & Run)
-1. Clone the repository:
+CREATE DATABASE chess;
+USE chess;
+
+CREATE TABLE player (
+  userName VARCHAR(100) PRIMARY KEY,
+  elo INT DEFAULT 1200,
+  matchesPlayed INT DEFAULT 0,
+  matchesWon INT DEFAULT 0,
+  matchesLost INT DEFAULT 0,
+  matchesDrawn INT DEFAULT 0
+);
+
+Notes:
+- Table.java currently connects using jdbc:mysql://localhost/chess with username root and an empty password in places. For production use, change these credentials and keep them outside source code (environment variables or a config file).
+- If your code writes to a different table name (e.g. a Performance table), create a matching table or update Table.java to reference player instead.
+
+How to run locally (recommended workflows)
+1) Clone the repository
    git clone https://github.com/Tabish5858/Chess-Engine-In-Java.git
    cd Chess-Engine-In-Java
 
-2. Add dependencies
-   - If you are using Maven, add Guava and your preferred SQL connector to pom.xml.
-   - If using Gradle, add them into build.gradle.
-   - Or download the Guava JAR and SQL driver JAR and put them on the classpath.
+2) Add dependencies
+- Using Maven (recommended): add the following to your pom.xml inside <dependencies> if you create one:
 
-3. Compile and run
-   - Using javac/java directly (simple):
-     javac -cp path/to/guava.jar:path/to/sql.jar -d out $(find src -name "*.java")
-     java -cp out:path/to/guava.jar:path/to/sql.jar Main
+<dependency>
+  <groupId>com.google.guava</groupId>
+  <artifactId>guava</artifactId>
+  <version>31.1-jre</version>
+</dependency>
 
-   - Using Maven (example):
-     mvn clean package
-     java -jar target/chess-engine-in-java.jar
+<dependency>
+  <groupId>mysql</groupId>
+  <artifactId>mysql-connector-java</artifactId>
+  <version>8.0.33</version>
+</dependency>
 
-Configuration Notes
-- GUI image/GIF pieces path:
-  The project loads piece images and GIFs from a path defined in the Table class (src/main/java/.../Table.java). If your images are not showing correctly:
-  1) Open Table.java and locate the code that loads the GIF / image files.
-  2) Update the path constants to point to the correct location of your images (relative paths are recommended inside the resources folder).
-  3) If you move assets into src/main/resources, load them via getResource() so they are packaged in the jar.
+- Using Gradle (example):
+implementation 'com.google.guava:guava:31.1-jre'
+implementation 'mysql:mysql-connector-java:8.0.33'
 
-- Guava & SQL libraries:
-  Connect Guava and your chosen SQL driver in your build configuration or add their JARs to the runtime classpath before running the application.
+- Manual classpath: download guava-x.jar and mysql-connector-java-x.jar and include them in the -cp argument when compiling or running.
 
-Project Structure (high level)
-- src/main/java - Java source code (engine, GUI, utils)
-- src/main/resources - Images, GIFs and other static assets (recommended)
-- pom.xml or build.gradle - Build configuration (if present)
+3) Configure assets and resources
+- Piece images and GIFs: Table.java sets pieceIconPath = "art/pieces/simple/" by default and loads images using ImageIO and ImageIcon. If you move assets into src/main/resources (recommended), load them with getResource() so they are included inside your JAR.
+- Application icon: Table.java currently uses an absolute path (ImageIcon("C:\\Users\\tabis\\...\\knightLogo.png")). Replace that with a relative resource path and load via getResource("/images/knightLogo.png") to make the build portable.
 
-How to Play / Usage
-- Launch the application and use the mouse to click and drag pieces to legal squares.
-- Basic game rules are enforced by the engine. For advanced features (AI difficulty, save/load), refer to the relevant class implementations and comments.
+4) Configure database credentials (strongly recommended)
+- Replace hard-coded connection strings with environment variables. Example in Table.java (replace as appropriate):
 
-Development & Contribution
-- This project is designed as an educational reference. Contributions are welcome and appreciated. Suggested contribution workflow:
+String url = System.getenv().getOrDefault("CHESS_DB_URL", "jdbc:mysql://localhost/chess");
+String user = System.getenv().getOrDefault("CHESS_DB_USER", "root");
+String pass = System.getenv().getOrDefault("CHESS_DB_PASS", "");
+Connection connection = DriverManager.getConnection(url, user, pass);
+
+Set environment variables before starting the app:
+export CHESS_DB_URL="jdbc:mysql://localhost/chess"
+export CHESS_DB_USER="root"
+export CHESS_DB_PASS="your_password"
+
+5) Compile & run
+- Using an IDE (IntelliJ/Eclipse):
+  - Import the project as a plain Java project or as a Maven/Gradle project if you added build files.
+  - Ensure the external libraries (Guava and MySQL connector) are added to the project libraries.
+  - Run the main class: com.chess.JChess (main method in JChess.java).
+
+- Using command line (javac/java):
+  Find and compile all .java files, including adding the JARs to the classpath. Example (UNIX/Mac):
+
+  mkdir -p out
+  find JChess/src -name "*.java" > sources.txt
+  javac -cp ":/path/to/guava.jar:/path/to/mysql-connector.jar" -d out @sources.txt
+  java -cp "out:/path/to/guava.jar:/path/to/mysql-connector.jar" com.chess.JChess
+
+- Using Maven (if you add a pom.xml):
+  mvn clean package
+  java -cp target/your-artifact-name.jar:/path/to/guava.jar:/path/to/mysql-connector.jar com.chess.JChess
+
+Common issues & troubleshooting
+- Images not visible or wrong pieces:
+  - Ensure pieceIconPath in Table.java points to the correct relative path where images live.
+  - Prefer packaging assets in src/main/resources and using getResource() to load them from the classpath.
+- ClassNotFound for JDBC driver:
+  - Add mysql-connector-java to your runtime classpath or to your build file dependencies.
+- Hard-coded absolute icon paths:
+  - Replace with resource-loading to avoid platform-specific failures.
+- Database connection failures:
+  - Verify MySQL is running, database exists and credentials are correct. Check firewall / localhost access.
+
+Code structure (high level)
+- JChess/src/com/chess - application entrypoints (JChess, wp_chess)
+- JChess/src/com/chess/gui - Swing UI classes (Table.java, GameHistoryPanel, DebugPanel, TakenPiecesPanel, etc.)
+- JChess/src/com/chess/engine - board, pieces, move generation, player, move classes
+- LoginFrom - forms for login and registration that interact with the database
+- art/ or src/main/resources - place your piece images and icon files here (recommended)
+
+How we used common libraries
+- Guava: Lists.reverse() and other collection utilities are used in Table.BoardDirection and other helper code.
+- JDBC: Raw JDBC (DriverManager, Connection, PreparedStatement) is used to read and write player statistics and ELO values.
+
+Development & contribution guidelines
+- This project is intended as an educational codebase. Contributions are welcome:
   1) Fork the repository
-  2) Create a branch: git checkout -b feature/your-feature
-  3) Make your changes and add tests if appropriate
-  4) Open a pull request with a clear description of your changes
+  2) Create a feature branch: git checkout -b feature/your-feature
+  3) Commit changes with clear messages and open a pull request
+  4) Add unit tests where appropriate and document behavior with Javadoc
 
-- Coding style: Follow standard Java conventions. Add Javadoc comments for public classes and methods.
+Recommended improvements
+- Replace hard-coded file paths with resource-loading via getResource()
+- Move configuration (DB URL/user/password, pieceIconPath) into a properties file or environment variables
+- Add a build tool (Maven/Gradle) to manage dependencies and packaging
+- Add unit tests around move generation and position evaluation
 
 License
-- This repository is provided under the MIT License unless otherwise specified in a LICENSE file. Include a LICENSE file at the repo root if you want to change this.
+- This repository is suitable for release under the MIT License. Add a LICENSE file with the MIT text at the repository root to declare that.
 
 Contact
-- Maintainer: @Tabish5858
-- For issues and feature requests, please use GitHub Issues: https://github.com/Tabish5858/Chess-Engine-In-Java/issues
+- Maintainer / Owner: @Tabish5858
+- Issues & feature requests: https://github.com/Tabish5858/Chess-Engine-In-Java/issues
 
-Notes from original README
-- Connect Guava and SQL Libraries First
-- Change the path of images and gif-pieces (in Table class) accordingly
+If you want, I can:
+- Add a pom.xml or build.gradle that wires Guava and MySQL driver and creates an executable jar
+- Move assets into src/main/resources and update Table.java to load resources via getResource()
+- Add a LICENSE file and a CONTRIBUTING.md
 
-Enjoy coding! :)
+Enjoy building and improving the engine!
