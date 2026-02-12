@@ -10,17 +10,55 @@ public class customer {
 
     //    🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿 Making new Connection 🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿🧿
     public void connect() {
-        String path = "jdbc:mysql://localhost/chess";
-        String user = "root";
-        String password = "";
+        String path = "jdbc:sqlite:chess.db";
         try {
-            con = DriverManager.getConnection(path, user, password);
+            // Load SQLite JDBC driver
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection(path);
             System.out.println("Connection Created");
+            initializeTables();
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e);
         }
 
+    }
+
+    private void initializeTables() {
+        try {
+            Statement s = con.createStatement();
+
+            // Create register table
+            String createRegisterTable = "CREATE TABLE IF NOT EXISTS register (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "name TEXT NOT NULL, " +
+                    "username TEXT NOT NULL UNIQUE, " +
+                    "password TEXT NOT NULL)";
+            s.executeUpdate(createRegisterTable);
+
+            // Create player table
+            String createPlayerTable = "CREATE TABLE IF NOT EXISTS player (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "name TEXT NOT NULL, " +
+                    "username TEXT NOT NULL UNIQUE, " +
+                    "password TEXT NOT NULL, " +
+                    "elo INTEGER DEFAULT 1200)";
+            s.executeUpdate(createPlayerTable);
+
+            // Insert default test user if not exists
+            String checkUser = "SELECT COUNT(*) FROM player WHERE username = 'test'";
+            ResultSet rs = s.executeQuery(checkUser);
+            rs.next();
+            if (rs.getInt(1) == 0) {
+                String insertUser = "INSERT INTO player(name, username, password) VALUES('Test User', 'test', 'test')";
+                s.executeUpdate(insertUser);
+                System.out.println("Default test user created (username: test, password: test)");
+            }
+
+            System.out.println("Database tables initialized");
+        } catch (SQLException e) {
+            System.out.println("Error initializing tables: " + e);
+        }
     }
 
 

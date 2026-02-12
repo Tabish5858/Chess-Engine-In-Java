@@ -48,9 +48,10 @@ public abstract class Move {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof Move otherMove)) {
+        if (!(other instanceof Move)) {
             return false;
         }
+        final Move otherMove = (Move) other;
         return getCurrentCoordinate() == otherMove.getCurrentCoordinate() &&
                 getDestinationCoordinate() == otherMove.getDestinationCoordinate() &&
                 getMovedPiece().equals(otherMove.getMovedPiece());
@@ -414,9 +415,10 @@ public abstract class Move {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof CastleMove otherCastleMove)) {
+            if (!(other instanceof CastleMove)) {
                 return false;
             }
+            final CastleMove otherCastleMove = (CastleMove) other;
             return super.equals(otherCastleMove) && this.castleRook.equals(otherCastleMove.getCastleRook());
         }
 
@@ -440,9 +442,10 @@ public abstract class Move {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof KingSideCastleMove otherKingSideCastleMove)) {
+            if (!(other instanceof KingSideCastleMove)) {
                 return false;
             }
+            final KingSideCastleMove otherKingSideCastleMove = (KingSideCastleMove) other;
             return super.equals(otherKingSideCastleMove) && this.castleRook.equals(otherKingSideCastleMove.getCastleRook());
         }
 
@@ -471,9 +474,10 @@ public abstract class Move {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof QueenSideCastleMove otherQueenSideCastleMove)) {
+            if (!(other instanceof QueenSideCastleMove)) {
                 return false;
             }
+            final QueenSideCastleMove otherQueenSideCastleMove = (QueenSideCastleMove) other;
             return super.equals(otherQueenSideCastleMove) && this.castleRook.equals(otherQueenSideCastleMove.getCastleRook());
         }
 
@@ -507,9 +511,10 @@ public abstract class Move {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof AttackMove otherAttackMove)) {
+            if (!(other instanceof AttackMove)) {
                 return false;
             }
+            final AttackMove otherAttackMove = (AttackMove) other;
             return super.equals(otherAttackMove) && getAttackedPiece().equals(otherAttackMove.getAttackedPiece());
         }
 

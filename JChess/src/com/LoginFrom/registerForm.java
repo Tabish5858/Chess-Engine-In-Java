@@ -11,63 +11,33 @@ import java.sql.*;
 
 public class registerForm extends JDialog {
 
-    ImageIcon icon = new ImageIcon("C:\\Users\\tabis\\OneDrive\\Desktop\\JChess\\src\\Images\\registerIcon.png");
+    ImageIcon icon = new ImageIcon("src/Images/registerIcon.png");
     private JPanel registerPanel;
     private JTextField nameField;
-    private JTextField emailField;
     private JTextField userNameField;
     private JPasswordField passwordField;
     private JPasswordField cPasswordField;
-    private JComboBox<String> monthComboBox;
-    private JComboBox<String> yearComboBox;
-    private JComboBox<String> dateComboBox;
-    private JRadioButton maleRadioButton;
-    private JRadioButton femaleRadioButton;
-    private JCheckBox beginnerCB;
-    private JCheckBox masterCB;
-    private JCheckBox gmCB;
-    private JSlider eloSlider;
     private JButton registerButton;
     private JButton cancelButton;
-    private JComboBox<String> countryComboBo;
-    private JCheckBox intermediateCheckBox;
-    private JList countryList;
-    private JLabel fName;
-    private JLabel elo;
-    private JLabel chessLevel;
-    private JLabel dateOfBirth;
-    private JLabel email;
-    private JLabel userName;
-    private JLabel gender;
-    private JLabel address;
-    private JLabel country;
-    private JLabel qualification;
-    private JLabel experience;
-    private JLabel countryLabel;
-    private JLabel password;
-    private JList countryComboBox;
-    private JLabel cPassword;
-    private JLabel fullName;
     private JLabel backToLogin;
 
     public registerForm(JFrame parent) {
         super(parent);
-        createUIComponents();
+        initComponents();
         setTitle("Create a New Account");
         setContentPane(registerPanel);
-        setMinimumSize(new Dimension(950, 700));
-        setPreferredSize(new Dimension(950, 700));
-        setMaximumSize(new Dimension(950, 700));
+        setMinimumSize(new Dimension(480, 420));
+        setPreferredSize(new Dimension(480, 420));
+        setMaximumSize(new Dimension(480, 420));
         setLocationRelativeTo(parent);
 //        setModal(true);
-        setResizable(true);
+        setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
         this.setIconImage(icon.getImage());
 
         nameField.setCaretColor(Color.WHITE);
         userNameField.setCaretColor(Color.WHITE);
-        emailField.setCaretColor(Color.WHITE);
         passwordField.setCaretColor(Color.WHITE);
         cPasswordField.setCaretColor(Color.WHITE);
         registerButton.addActionListener(e -> {
@@ -96,154 +66,233 @@ public class registerForm extends JDialog {
         });
     }
 
+    private void initComponents() {
+        registerPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+                // Create gradient background
+                GradientPaint gradient = new GradientPaint(0, 0, new Color(20, 30, 45),
+                                                         0, getHeight(), new Color(40, 50, 75));
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        registerPanel.setLayout(new GridBagLayout());
+        registerPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            BorderFactory.createEmptyBorder(20, 20, 20, 20)
+        ));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(12, 15, 12, 15);
+
+        // Title Label with chess pieces
+        JLabel titleLabel = new JLabel("♖ Create New Account ♜", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        titleLabel.setForeground(new Color(220, 220, 255));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPanel.add(titleLabel, gbc);
+
+        // Name Label with icon
+        JLabel nameLabel = new JLabel("📝 Full Name:");
+        nameLabel.setForeground(new Color(200, 200, 220));
+        nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPanel.add(nameLabel, gbc);
+
+        // Name Field with enhanced styling
+        nameField = createStyledTextField();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPanel.add(nameField, gbc);
+
+        // Username Label with icon
+        JLabel userLabel = new JLabel("👤 Username:");
+        userLabel.setForeground(new Color(200, 200, 220));
+        userLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        registerPanel.add(userLabel, gbc);
+
+        // Username Field with enhanced styling
+        userNameField = createStyledTextField();
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPanel.add(userNameField, gbc);
+
+        // Password Label with icon
+        JLabel passLabel = new JLabel("🔒 Password:");
+        passLabel.setForeground(new Color(200, 200, 220));
+        passLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        registerPanel.add(passLabel, gbc);
+
+        // Password Field with enhanced styling
+        passwordField = createStyledPasswordField();
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPanel.add(passwordField, gbc);
+
+        // Confirm Password Label with icon
+        JLabel cPassLabel = new JLabel("🔍 Confirm Password:");
+        cPassLabel.setForeground(new Color(200, 200, 220));
+        cPassLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.NONE;
+        registerPanel.add(cPassLabel, gbc);
+
+        // Confirm Password Field with enhanced styling
+        cPasswordField = createStyledPasswordField();
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPanel.add(cPasswordField, gbc);
+
+        // Buttons Panel with enhanced styling
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        buttonPanel.setOpaque(false);
+
+        registerButton = createStyledButton("✓ Register", new Color(40, 120, 40), new Color(60, 140, 60));
+        cancelButton = createStyledButton("✗ Cancel", new Color(120, 40, 40), new Color(140, 60, 60));
+
+        buttonPanel.add(registerButton);
+        buttonPanel.add(cancelButton);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(20, 15, 15, 15);
+        registerPanel.add(buttonPanel, gbc);
+
+        // Back to Login Label with better styling
+        backToLogin = new JLabel("<html><u>Already have an account? Back to Login</u></html>");
+        backToLogin.setForeground(Color.WHITE);
+        backToLogin.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        backToLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(10, 15, 15, 15);
+        registerPanel.add(backToLogin, gbc);
+    }
+
+    private JTextField createStyledTextField() {
+        JTextField field = new JTextField(18);
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        field.setBackground(new Color(240, 240, 250));
+        field.setForeground(new Color(50, 50, 70));
+        field.setCaretColor(new Color(100, 100, 120));
+        return field;
+    }
+
+    private JPasswordField createStyledPasswordField() {
+        JPasswordField field = new JPasswordField(18);
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        field.setBackground(new Color(240, 240, 250));
+        field.setForeground(new Color(50, 50, 70));
+        field.setCaretColor(new Color(100, 100, 120));
+        return field;
+    }
+
+    private JButton createStyledButton(String text, Color normalColor, Color hoverColor) {
+        JButton button = new JButton(text) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+                Color bgColor;
+                if (getModel().isPressed()) {
+                    bgColor = normalColor.darker();
+                } else if (getModel().isRollover()) {
+                    bgColor = hoverColor;
+                } else {
+                    bgColor = normalColor;
+                }
+
+                g2d.setColor(bgColor);
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+
+                FontMetrics fm = g2d.getFontMetrics();
+                Rectangle stringBounds = fm.getStringBounds(this.getText(), g2d).getBounds();
+                int textX = (getWidth() - stringBounds.width) / 2;
+                int textY = (getHeight() - stringBounds.height) / 2 + fm.getAscent();
+                g2d.setColor(Color.WHITE);
+                g2d.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                g2d.drawString(getText(), textX, textY);
+            }
+        };
+        button.setPreferredSize(new Dimension(120, 40));
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        return button;
+    }
+
     public static void main(String[] args) {
         new registerForm(null);
     }
 
-    private String getSelectedQualification() {
-        if (gmCB.isSelected()) {
-            return "Grandmaster";
-        } else if (masterCB.isSelected()) {
-            return "Master";
-        } else if (intermediateCheckBox.isSelected()) {
-            return "Intermediate";
-        } else if (beginnerCB.isSelected()) {
-            return "Beginner";
-        } else {
-            return "No Qualification";
-        }
-    }
-
     public void registerUser() {
         String name = nameField.getText();
-        String email = emailField.getText();
         String userName = userNameField.getText();
         String password = String.valueOf(passwordField.getPassword());
         String confirmPassword = String.valueOf(cPasswordField.getPassword());
-        String date = String.valueOf(dateComboBox.getSelectedItem());
-        String month = String.valueOf(monthComboBox.getSelectedItem());
-        String year = String.valueOf(yearComboBox.getSelectedItem());
-        String myCountry = String.valueOf(countryComboBo.getSelectedItem());
-        String elo = String.valueOf(eloSlider.getValue());
-        String dob = month + "/" + date + "/" + year;
-        String gender = (maleRadioButton.isSelected()) ? "Male" : "Female";
-        String chessLevel = getSelectedQualification();
 
-        if (date.isEmpty() || month.isEmpty() || year.isEmpty() || myCountry.isEmpty() ||
-                name.isEmpty() || email.isEmpty() || userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Please Enter All The Fields!",
-                    "Try Again!",
-                    JOptionPane.ERROR_MESSAGE
-            );
+        if (name.isEmpty() || userName.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(this,
-                    "Confirm Password Doesn't Match!",
-                    "Try Again!",
-                    JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
-        int i=addUserToDataBase(name, email, userName, password, dob, gender, myCountry, chessLevel, elo);
-//        addUserToDataBasePerformance(userName,elo,0,0,0,0);
-        if(i==1){
-            JOptionPane.showMessageDialog(this,
-                    "Successfully registered new user: " + name,
-                    "Welcome!",
-                    JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Successful registration of: " + name);
-            JChess.showLoginDialog();
-            dispose();
-        }
-        else {
-            JOptionPane.showMessageDialog(this,
-                    "Can not Insert User(Open Xampp And Run Server First)!",
-                    "Try Again!",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(this, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-    }
-
-    private int addUserToDataBase(String name, String email, String userName, String password, String dob, String gender, String country, String chessLevel, String elo) {
-        String path = "jdbc:mysql://localhost/chess";
-        String userPath = "root";
-        String Password = "";
         try {
-            Connection con = DriverManager.getConnection(path, userPath, Password);
-            Statement stmt = con.createStatement();
+            customer c = new customer();
+            c.connect();
 
-            String sql = "INSERT INTO player(name, email, username, password, dateOfBirth, gender, country, chessLevel, elo,played,won,lost,draw) " +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
+            // Hash password for better security (simple conversion to int for now)
+            int passwordHash = password.hashCode();
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, userName);
-            preparedStatement.setString(4, password);
-            preparedStatement.setString(5, dob);
-            preparedStatement.setString(6, gender);
-            preparedStatement.setString(7, country);
-            preparedStatement.setString(8, chessLevel);
-            preparedStatement.setString(9, elo);
-            preparedStatement.setString(10, "0");
-            preparedStatement.setString(11, "0");
-            preparedStatement.setString(12, "0");
-            preparedStatement.setString(13, "0");
+            c.insert(name, userName, passwordHash);
 
-            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
 
-            stmt.close();
-            con.close();
-            return 1;
-        } catch (SQLException e) {
-            e.printStackTrace();  // Log the exception
-            JOptionPane.showMessageDialog(this,
-                    "Error inserting data into the database. Please try again.",
-                    "Database Error",
-                    JOptionPane.ERROR_MESSAGE);
+            // Open login window
+            new login(null).setVisible(true);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Registration failed: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        return 0;
-    }
-    private void createUIComponents() {
-        String[] countryList = {
-                "Pakistan", "Saudi Arabia", "Bangladesh", "America", "Iran", "Iraq", "Turkey", "Afghanistan", "China",
-                "Qatar", "Egypt", "India", "Brazil", "Canada", "France", "Germany", "Italy", "Japan", "Mexico", "Russia",
-                "South Korea", "Spain", "United Kingdom", "Australia", "Argentina", "Colombia", "South Africa", "Nigeria",
-                "Kenya", "Ghana", "Morocco", "Peru", "Chile", "Singapore", "Malaysia", "Thailand", "Indonesia", "Philippines",
-                "Vietnam", "New Zealand", "Netherlands", "Belgium", "Switzerland", "Sweden", "Norway", "Denmark", "Finland",
-                "Portugal", "Ireland"
-        };
-        countryComboBo = new JComboBox<>(countryList);
-
-        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        String[] days = new String[31];
-        for (int i = 0; i < 31; i++) {
-            days[i] = Integer.toString(i + 1);
-        }
-        String[] years = new String[123];
-        for (int i = 0; i < 123; i++) {
-            years[i] = Integer.toString(1970 + i);
-        }
-
-        monthComboBox = new JComboBox<>(months);
-        dateComboBox = new JComboBox<>(days);
-        yearComboBox = new JComboBox<>(years);
-        ButtonGroup genderButtonGroup = new ButtonGroup();
-        genderButtonGroup.add(maleRadioButton);
-        genderButtonGroup.add(femaleRadioButton);
-        ButtonGroup group = new ButtonGroup();
-        group.add(maleRadioButton);
-        group.add(femaleRadioButton);
-
-
-        ButtonGroup level = new ButtonGroup();
-        level.add(beginnerCB);
-        level.add(intermediateCheckBox);
-        level.add(masterCB);
-        level.add(gmCB);
     }
 }

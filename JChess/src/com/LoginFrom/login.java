@@ -13,9 +13,11 @@ public class login extends JDialog {
     private JLabel registerLabel;
     private boolean isLoginButtonClicked;
     private static String playerOneName;
-    ImageIcon icon  = new ImageIcon("C:\\Users\\tabis\\OneDrive\\Desktop\\JChess\\src\\Images\\loginIcon.png");
+    ImageIcon icon  = new ImageIcon("src/Images/loginIcon.png");
+
     public login(JFrame parent) {
         super(parent);
+        initComponents();
         setDefaultLookAndFeelDecorated(true);
         setContentPane(contentPane);
         setModal(true);
@@ -78,6 +80,145 @@ public class login extends JDialog {
             }
         });
     }
+
+    private void initComponents() {
+        contentPane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+                // Create gradient background
+                GradientPaint gradient = new GradientPaint(0, 0, new Color(25, 25, 35),
+                                                         0, getHeight(), new Color(45, 45, 65));
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        contentPane.setLayout(new GridBagLayout());
+        contentPane.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            BorderFactory.createEmptyBorder(20, 20, 20, 20)
+        ));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(15, 15, 15, 15);
+
+        // Title Label with icon
+        JLabel titleLabel = new JLabel("♔ Chess Login ♛", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        titleLabel.setForeground(new Color(220, 220, 255));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        contentPane.add(titleLabel, gbc);
+
+        // Username Label
+        JLabel userLabel = new JLabel("Username:");
+        userLabel.setForeground(Color.WHITE);
+        userLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        contentPane.add(userLabel, gbc);
+
+        // Username Field with styling
+        userName = new JTextField(15) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                if (getBackground().equals(Color.WHITE)) {
+                    setBackground(new Color(240, 240, 250));
+                }
+                super.paintComponent(g);
+            }
+        };
+        userName.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        userName.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        userName.setBackground(new Color(240, 240, 250));
+        userName.setForeground(new Color(50, 50, 70));
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        contentPane.add(userName, gbc);
+
+        // Password Label
+        JLabel passLabel = new JLabel("Password:");
+        passLabel.setForeground(Color.WHITE);
+        passLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        contentPane.add(passLabel, gbc);
+
+        // Password Field with styling
+        password = new JPasswordField(15);
+        password.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        password.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        password.setBackground(new Color(240, 240, 250));
+        password.setForeground(new Color(50, 50, 70));
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        contentPane.add(password, gbc);
+
+        // Login Button with modern styling
+        loginButton = new JButton("Login") {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                if (getModel().isPressed()) {
+                    g2d.setColor(new Color(30, 80, 30));
+                } else if (getModel().isRollover()) {
+                    g2d.setColor(new Color(60, 120, 60));
+                } else {
+                    g2d.setColor(new Color(40, 100, 40));
+                }
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+
+                FontMetrics fm = g2d.getFontMetrics();
+                Rectangle stringBounds = fm.getStringBounds(this.getText(), g2d).getBounds();
+                int textX = (getWidth() - stringBounds.width) / 2;
+                int textY = (getHeight() - stringBounds.height) / 2 + fm.getAscent();
+                g2d.setColor(Color.WHITE);
+                g2d.drawString(getText(), textX, textY);
+            }
+        };
+        loginButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        loginButton.setPreferredSize(new Dimension(200, 45));
+        loginButton.setBorderPainted(false);
+        loginButton.setContentAreaFilled(false);
+        loginButton.setFocusPainted(false);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(20, 15, 15, 15);
+        contentPane.add(loginButton, gbc);
+
+        registerLabel = new JLabel("<html><u>New User? Click here to Register</u></html>");
+        registerLabel.setForeground(Color.WHITE);
+        registerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(10, 15, 15, 15);
+        contentPane.add(registerLabel, gbc);
+
+        setPreferredSize(new Dimension(450, 380));
+        setMinimumSize(new Dimension(450, 380));
+    }
+
     public void Home_open() {
         dispose();
         home h = new home();

@@ -38,7 +38,7 @@ public final class Table {
     private final DebugPanel debugPanel;
     private final BoardPanel boardPanel;
     private final GameSetup gameSetup;
-    ImageIcon icon = new ImageIcon("C:\\Users\\tabis\\OneDrive\\Desktop\\JChess\\src\\Images\\knightLogo.png");
+    ImageIcon icon = new ImageIcon("src/Images/knightLogo.png");
     private GameHistoryPanel gameHistoryPanel;
     private MoveLog moveLog;
     private Board chessBoard;

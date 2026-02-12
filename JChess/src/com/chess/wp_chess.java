@@ -9,16 +9,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serial;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static java.awt.EventQueue.invokeLater;
 
 public class wp_chess extends JFrame {
-    @Serial
     private static final long serialVersionUID = 1L;
-    ImageIcon icon = new ImageIcon("C:\\Users\\tabis\\OneDrive\\Desktop\\JChess\\src\\Images\\frameLogoBottom.png");
+    ImageIcon icon = new ImageIcon("src/Images/frameLogoBottom.png");
 
     public wp_chess() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,7 +101,7 @@ public class wp_chess extends JFrame {
         });
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\tabis\\OneDrive\\Desktop\\JChess\\src\\Images\\chessFrame.png"));
+        lblNewLabel.setIcon(new ImageIcon("src/Images/chessFrame.png"));
         lblNewLabel.setBounds(10, 10, 686, 357);
         contentPane.add(lblNewLabel);
 

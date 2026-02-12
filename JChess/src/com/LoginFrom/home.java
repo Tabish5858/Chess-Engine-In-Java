@@ -10,6 +10,7 @@ public class home extends JFrame {
     private JPanel welcomePanel;
 
     home() {
+        initComponents();
         setTitle("Welcome Back!");
         setContentPane(welcomePanel);
         setLocation(550,300);
@@ -23,6 +24,20 @@ public class home extends JFrame {
             }
         }, 2000);
     }
+
+    private void initComponents() {
+        welcomePanel = new JPanel();
+        welcomePanel.setLayout(new BorderLayout());
+        welcomePanel.setBackground(new Color(45, 45, 45));
+        welcomePanel.setPreferredSize(new Dimension(400, 200));
+
+        JLabel welcomeLabel = new JLabel("Welcome to Chess!", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setForeground(Color.WHITE);
+
+        welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {

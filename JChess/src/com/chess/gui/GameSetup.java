@@ -54,15 +54,16 @@ class GameSetup extends JDialog {
         okButton.addActionListener(e -> {
             whitePlayerType = whiteComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
             blackPlayerType = blackComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
-            GameSetup.this.setVisible(false);
+            GameSetup.this.dispose(); // Properly dispose instead of just hiding
         });
         cancelButton.addActionListener(e -> {
             System.out.println("Cancel");
-            GameSetup.this.setVisible(false);
+            GameSetup.this.dispose(); // Properly dispose instead of just hiding
         });
         myPanel.add(cancelButton);
         myPanel.add(okButton);
         setLocationRelativeTo(frame);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Ensure proper disposal on close
         pack();
         setVisible(false);
     }
