@@ -1,0 +1,29 @@
+name: Java CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: JChess
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Compile project
+        run: |
+          mkdir -p out
+          javac -cp ".:guava-19.0.jar:sqlite-jdbc-3.36.0.3.jar:mysql-connector-j-8.2.0.jar" -d out -sourcepath src src/com/chess/JChess.java

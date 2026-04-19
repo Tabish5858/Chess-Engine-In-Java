@@ -14,6 +14,9 @@ A professional, well-documented Java chess engine with a Swing GUI, designed as 
 - [Database Setup](#database-setup)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
+- [Security](#security)
+- [Support](#support)
 - [License](#license)
 
 ## Features
@@ -108,6 +111,17 @@ Update `Table.java` to use secure credentials.
 2. Create a feature branch: `git checkout -b feature/your-feature`.
 3. Commit changes with tests and Javadoc.
 4. Open a pull request.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full contribution guidance.
+
+## Code of Conduct
+Please review [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before participating.
+
+## Security
+For responsible disclosure, follow [SECURITY.md](SECURITY.md).
+
+## Support
+For help, issue triage, and report types, see [SUPPORT.md](SUPPORT.md).
 
 ## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

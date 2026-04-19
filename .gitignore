@@ -1,0 +1,17 @@
+# Local-only workspace instructions
+prompt.txt
+
+# macOS
+.DS_Store
+
+# Java build outputs
+**/out/
+**/bin/
+*.class
+
+# Logs
+*.log
+
+# Local databases
+*.db-shm
+*.db-wal
